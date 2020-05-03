@@ -4,7 +4,7 @@
   Connection:
     VCC -> 5V (3V3 on Arduino Due, Zero, MKR1000, etc)
     GND -> GND
-    SCL -> SCL (A5 on Arduino Uno, Leonardo, etc or 21 on Mega and Due)
+    SCL -> SCL (A5 on Arduino Uno, Leonardo, etc or 21 on Mega and Due)////
     SDA -> SDA (A4 on Arduino Uno, Leonardo, etc or 20 on Mega and Due)
     ADD -> GND or VCC (see below)
   ADD pin uses to set sensor I2C address. If it has voltage greater or equal to
