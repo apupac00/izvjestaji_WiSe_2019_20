@@ -14,6 +14,7 @@ RF24 radio(CE_PIN, CSN_PIN);
 
 struct SensorData
 {
+  uint8_t userID;
   float temp;
   float hum;
   uint16_t lightLevel;
@@ -56,6 +57,7 @@ void send()
 {
 
   bool rslt;
+  dataToSend.userID = 9;
   dataToSend.temp = random(10, 20);
   dataToSend.hum = random(20, 30);
   dataToSend.lightLevel = random(100, 200);
