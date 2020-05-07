@@ -42,8 +42,8 @@ void loop()
     #########################
     */
 
-    bool rslt = radioNRF.RF_send(dataToSend);
-
+    bool rslt;
+    rslt = radioNRF.RF_send(dataToSend);
 
     state = RADIO_RX;
 
