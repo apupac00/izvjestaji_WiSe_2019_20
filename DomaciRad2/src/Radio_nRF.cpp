@@ -32,16 +32,7 @@ bool RADIO::RF_send(struct SensorData sensorData)
     Serial.print(sensorData.lightLevel);
 
 
-    if (rslt){
-       
-       return true;
-
-    }
-    else{
-        
-        return false;
-        
-    }
+    return rslt;
 }
 
 void RADIO::RF_receive(bool rslt)

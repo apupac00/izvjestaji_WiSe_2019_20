@@ -25,6 +25,8 @@ void setup()
 
 void loop()
 {
+  bool rslt;
+
   switch (state)
   {
   case READ_SERIAL:
@@ -42,7 +44,6 @@ void loop()
     #########################
     */
 
-    bool rslt;
     rslt = radioNRF.RF_send(dataToSend);
 
     state = RADIO_RX;
