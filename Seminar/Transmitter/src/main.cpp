@@ -3,7 +3,6 @@
 #include "main.h"
 #include "Sensors.h"
 #include "Radio_nRF.h"
-#include <avr/wdt.h>
 
 SENSORS sensor;
 RADIO radioNRF;
@@ -17,7 +16,6 @@ void setup() {
   Serial.begin(115200);
   radioNRF.nRF_init();
 
-  wdt_enable(WDTO_8S);
 }
 
 void loop() {
@@ -59,7 +57,5 @@ void loop() {
       state = READ_SERIAL;
       break;
   }
-
-  wdt_reset();
   
 }
