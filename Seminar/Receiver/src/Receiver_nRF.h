@@ -16,14 +16,14 @@ class RADIO
 {
 public:
     struct SensorData dataReceived;
-    unsigned long currentMillis;
+    
     bool newData;
     RADIO();
     ~RADIO();
     void nRF_init();
     void getData();
     void showData();
-    void showPreviousData();
+
 };
 
 #endif
