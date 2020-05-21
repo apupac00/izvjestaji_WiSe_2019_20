@@ -3,8 +3,8 @@
 
 struct SensorData
 {
-    float distance;
-    uint32_t lightLevel;
+    uint16_t distance; 
+    uint16_t lightLevel;
 };
 
 typedef enum

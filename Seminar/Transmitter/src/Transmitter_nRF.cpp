@@ -1,4 +1,4 @@
-#include "Radio_nRF.h"
+#include "Transmitter_nRF.h"
 #include "main.h"
 
 RF24 radio(CE_PIN, CSN_PIN);

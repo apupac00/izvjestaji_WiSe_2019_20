@@ -5,14 +5,14 @@ SENSORS::~SENSORS(){}
 
 HCSR04 hcsr04(TRIG_PIN, ECHO_PIN);
 
-float SENSORS::readDistance(){
+uint16_t SENSORS::readDistance(){
 
-    float dist;
-    float sum = 0.00;
+    uint16_t dist;
+    uint16_t sum = 0.00;
 
     for(int i = 0; i < 10; i++){
         delay(20);
-        float d = hcsr04.dist();
+        uint16_t d = hcsr04.dist();
         delay(20);
         sum = sum + d;
     }
@@ -25,14 +25,16 @@ float SENSORS::readDistance(){
     return dist;
 }
 
-uint32_t SENSORS::readLight(){
+
+uint16_t SENSORS::readLight(){
+   
     // https://www.allaboutcircuits.com/projects/design-a-luxmeter-using-a-light-dependent-resistor/
-    uint32_t ldrRawData;
-    uint32_t sum = 0;
+    uint16_t ldrRawData;
+    uint16_t sum = 0;
 
     for(int i = 0; i < 10; i++){
         delay(20);
-        uint32_t l = analogRead(A0);
+        uint16_t l = analogRead(A0);
         delay(20);
         sum = sum + l;
     }
@@ -47,7 +49,7 @@ uint32_t SENSORS::readLight(){
     float ldrVoltage = ADC_REF_VOLTAGE - resistorVoltage;
     float ldrResistance = ldrVoltage / resistorVoltage * REF_RESISTANCE; // REF_RESISTANCE is 216.4 ohm
 
-    uint32_t ldrLux = LUX_CALC_SCALAR * pow(ldrResistance, LUX_CALC_EXPONENT);
+    uint16_t ldrLux = LUX_CALC_SCALAR * pow(ldrResistance, LUX_CALC_EXPONENT);
 
     Serial.print(F("Light: "));
     Serial.print(ldrLux);

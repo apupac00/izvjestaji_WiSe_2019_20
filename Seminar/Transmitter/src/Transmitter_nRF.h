@@ -1,5 +1,5 @@
-#ifndef Radio_nRF_h
-#define Radio_nRF_h
+#ifndef Transmitter_nRF_h
+#define Transmitter_nRF_h
 
 #include <SPI.h>
 #include <nRF24L01.h>
