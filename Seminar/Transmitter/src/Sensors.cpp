@@ -5,14 +5,14 @@ SENSORS::~SENSORS(){}
 
 HCSR04 hcsr04(TRIG_PIN, ECHO_PIN);
 
-uint16_t SENSORS::readDistance(){
+float SENSORS::readDistance(){
 
-    uint16_t dist;
-    uint16_t sum = 0.00;
+    float dist;
+    float sum = 0.0;
 
     for(int i = 0; i < 10; i++){
         delay(20);
-        uint16_t d = hcsr04.dist();
+        float d = hcsr04.dist();
         delay(20);
         sum = sum + d;
     }

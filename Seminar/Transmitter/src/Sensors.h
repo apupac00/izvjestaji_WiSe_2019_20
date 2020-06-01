@@ -14,7 +14,7 @@ public:
 
     SENSORS();
     ~SENSORS();
-    uint16_t readDistance();
+    float readDistance();
     uint16_t readLight();
 
 };

@@ -9,14 +9,15 @@
 #define CSN_PIN 10
 
 struct SensorData{
-  uint16_t distance;
+  float distance;
   uint16_t lightLevel;
 };
+
 class RADIO
 {
 public:
     struct SensorData dataReceived;
-    
+
     bool newData;
     RADIO();
     ~RADIO();

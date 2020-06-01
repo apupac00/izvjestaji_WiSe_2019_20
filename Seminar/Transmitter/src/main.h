@@ -3,10 +3,13 @@
 
 struct SensorData
 {
-    uint16_t distance; 
+    float distance;
     uint16_t lightLevel;
 };
-
+struct PreSensorData{
+    float preDist; 
+    uint16_t preLight;
+};
 typedef enum
 {
     READ_SERIAL,

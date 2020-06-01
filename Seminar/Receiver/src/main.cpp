@@ -19,5 +19,6 @@ void loop()
 {
   radioNRF.getData();
   radioNRF.showData();
+  radioNRF.showPreData();
 }
 

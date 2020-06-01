@@ -6,16 +6,23 @@
 #include <avr/wdt.h>
 
 #define N 1
+#define N_max 10
+#define DEV 0.2
+
 
 SENSORS sensor;
 RADIO radioNRF;
 
 
 SensorData dataToSend;
+PreSensorData preData;
 
 StateType state = READ_SERIAL;
 
+void compareWithPreviousValues();
+
 bool rslt;
+uint8_t counter;
 
 void setup() {
 
@@ -45,9 +52,9 @@ void loop() {
 
     case RADIO_TX:
 
-      rslt = radioNRF.RF_send(dataToSend);
+      compareWithPreviousValues();
       wdt_reset();
-      state = RADIO_RX;
+
       break;
     case RADIO_RX:
 
@@ -55,6 +62,7 @@ void loop() {
       state = SLEEP_STATE;
       break;
     case SLEEP_STATE:
+
       for(int i = 0; i < N; i++){
         delay(50);
         LowPower.powerDown(SLEEP_8S, ADC_OFF, BOD_OFF);
@@ -67,6 +75,27 @@ void loop() {
     default:
     
       break;
+  }
+  
+}
+
+void compareWithPreviousValues(){
+
+  if (!((preData.preDist <= (dataToSend.distance + (DEV*dataToSend.distance))) && (preData.preDist >= (dataToSend.distance - (DEV*dataToSend.distance)))) || !((preData.preLight <= (dataToSend.lightLevel + (DEV*dataToSend.lightLevel))) &&(preData.preLight >= (dataToSend.lightLevel - (DEV*dataToSend.lightLevel)))))
+  {
+    rslt = radioNRF.RF_send(dataToSend);
+    preData.preDist = dataToSend.distance;
+    preData.preLight = dataToSend.lightLevel;
+    counter = 0;
+    state = RADIO_RX;
+  } else if (counter >= N_max){
+    rslt = radioNRF.RF_send(dataToSend);
+    counter = 0;
+    state = RADIO_RX;
+  } else{
+    Serial.println(F("Transmitter will not send data!!!"));
+    counter++;
+    state = SLEEP_STATE;
   }
   
 }

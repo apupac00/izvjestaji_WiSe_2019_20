@@ -12,8 +12,8 @@ void RADIO::nRF_init()
 {
     radio.begin();
     radio.setDataRate(RF24_250KBPS);
-    radio.setChannel(111);
-    radio.setPALevel(RF24_PA_MAX);
+    radio.setChannel(113);
+    radio.setPALevel(RF24_PA_MIN);
     radio.setRetries(3, 5);
     radio.openWritingPipe(address);
 }
